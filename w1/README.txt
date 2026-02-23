@@ -17,11 +17,4 @@ field wajib (nama, pilih mobil, tanggal sewa, lama sewa) yang divalidasi menggun
  required dan fungsi JavaScript tambahan untuk memastikan lama sewa minimal satu hari. 
 Navigasi antar halaman dipermudah melalui navbar yang konsisten di kedua halaman.
 
-Desain antarmuka mengusung tema gelap dengan aksen warna emas (#ffc107) yang kontras,
- menciptakan kesan mewah dan elegan sesuai karakter merek Land Rover. 
-Efek hover pada kartu dan tombol memberikan umpan balik interaktif yang halus.
- Penggunaan sistem grid Bootstrap (row dan col) memastikan tata letak menyesuaikan diri
- secara proporsional pada layar kecil hingga besar. Footer berisi informasi perusahaan,
- tautan menu, dan ikon media sosial, melengkapi identitas profesional situs. Seluruh kode ditulis dengan rapi,
- diberi komentar, dan dipisahkan antara struktur HTML, gaya CSS, dan logika JavaScript,
- sehingga mudah dipelihara dan dikembangkan lebih lanjut.
+
