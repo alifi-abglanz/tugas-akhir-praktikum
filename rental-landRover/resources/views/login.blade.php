@@ -1,53 +1,3 @@
-<?php
-session_start();
-
-if (!isset($_SESSION['username']) && isset($_COOKIE['remembered_username']) && $_COOKIE['remembered_username'] !== '') {
-    $_SESSION['username'] = $_COOKIE['remembered_username'];
-}
-
-if (isset($_SESSION['username'])) {
-    header('Location: index.php');
-    exit;
-}
-
-$error = '';
-$prefillUsername = isset($_COOKIE['remembered_username']) ? $_COOKIE['remembered_username'] : '';
-$validUsername = 'Alexander';
-$validPassword = '321123';
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = trim($_POST['username'] ?? '');
-    $password = trim($_POST['password'] ?? '');
-    $rememberMe = isset($_POST['remember_me']);
-
-    if ($username === '' || $password === '') {
-        $error = 'Username dan password wajib diisi.';
-    } elseif ($username !== $validUsername || $password !== $validPassword) {
-        $error = 'Username atau password salah.';
-    } else {
-        $_SESSION['username'] = $username;
-
-        if ($rememberMe) {
-            setcookie('remembered_username', $username, [
-                'expires' => time() + (30 * 24 * 60 * 60),
-                'path' => '/',
-                'httponly' => true,
-                'samesite' => 'Lax'
-            ]);
-        } else {
-            setcookie('remembered_username', '', [
-                'expires' => time() - 3600,
-                'path' => '/',
-                'httponly' => true,
-                'samesite' => 'Lax'
-            ]);
-        }
-
-        header('Location: index.php');
-        exit;
-    }
-}
-?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -56,19 +6,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <title>Land Rover Rental - Login</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <div class="container">
-      <a class="navbar-brand" href="index.php"><i class="bi bi-truck"></i> Land Rover Rental</a>
+      <a class="navbar-brand" href="{{ route('home') }}"><i class="bi bi-truck"></i> Land Rover Rental</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="booking.html">Booking</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ route('booking') }}">Booking</a></li>
           <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
             <button id="themeToggleBtn" class="btn btn-outline-light btn-sm" type="button">
               <i class="bi bi-moon-stars-fill"></i> Dark Mode
@@ -94,16 +44,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="card-body p-4">
               <h3 class="card-title mb-4"><i class="bi bi-person-lock"></i> Form Login</h3>
 
-              <?php if ($error !== ''): ?>
-                <div class="alert alert-danger" role="alert"><?= htmlspecialchars($error, ENT_QUOTES, 'UTF-8'); ?></div>
-              <?php endif; ?>
+              @if ($errors->any())
+                <div class="alert alert-danger" role="alert">
+                  {{ $errors->first() }}
+                </div>
+              @endif
 
-              <form method="post" action="proses_login.php">
+              @if (session('error'))
+                <div class="alert alert-danger" role="alert">
+                  {{ session('error') }}
+                </div>
+              @endif
+
+              <form method="post" action="{{ route('login.post') }}">
+                @csrf
                 <div class="mb-3">
                   <label for="username" class="form-label">Username</label>
                   <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-person"></i></span>
-                    <input type="text" class="form-control" id="username" name="username" value="<?= htmlspecialchars($prefillUsername, ENT_QUOTES, 'UTF-8'); ?>" required>
+                    <input type="text" class="form-control" id="username" name="username" value="{{ old('username') }}" required>
                   </div>
                 </div>
 
@@ -116,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
 
                 <div class="form-check mb-4">
-                  <input class="form-check-input" type="checkbox" id="remember_me" name="remember_me" <?= $prefillUsername !== '' ? 'checked' : ''; ?>>
+                  <input class="form-check-input" type="checkbox" id="remember_me" name="remember_me">
                   <label class="form-check-label" for="remember_me">Remember me</label>
                 </div>
 
@@ -141,8 +100,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="col-md-3">
           <h5>Menu</h5>
           <ul class="list-unstyled">
-            <li><a href="index.php" class="text-white text-decoration-none">Home</a></li>
-            <li><a href="booking.html" class="text-white text-decoration-none">Booking</a></li>
+            <li><a href="{{ route('home') }}" class="text-white text-decoration-none">Home</a></li>
+            <li><a href="{{ route('booking') }}" class="text-white text-decoration-none">Booking</a></li>
           </ul>
         </div>
         <div class="col-md-3">
@@ -158,6 +117,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="script.js"></script>
+  <script src="{{ asset('js/script.js') }}"></script>
 </body>
 </html>
