@@ -18,7 +18,6 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto align-items-lg-center">
           <li class="nav-item"><a class="nav-link active" href="{{ route('home') }}">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="{{ route('products') }}">Produk</a></li>
           <li class="nav-item"><a class="nav-link" href="{{ route('booking') }}">Booking</a></li>
           <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
             <span class="nav-link"><i class="bi bi-person-circle"></i> {{ session('username', 'Tamu') }}</span>
@@ -57,10 +56,7 @@
         <div class="col-lg-8 text-white">
           <h1 class="display-4 fw-bold">Sewa Land Rover <br>Untuk Petualangan Anda</h1>
           <p class="lead">Nikmati pengalaman berkendara mewah dan tangguh dengan armada Land Rover pilihan. Tersedia Range Rover, Discovery, Sport, dan Defender dari tahun 2005-2007.</p>
-          <div class="d-flex flex-wrap gap-3">
-            <a href="{{ route('booking') }}" class="btn btn-primary btn-lg"><i class="bi bi-calendar-check"></i> Pesan Sekarang</a>
-            <a href="{{ route('products') }}" class="btn btn-outline-light btn-lg"><i class="bi bi-car-front-fill"></i> Lihat Produk</a>
-          </div>
+          <a href="{{ route('booking') }}" class="btn btn-primary btn-lg"><i class="bi bi-calendar-check"></i> Pesan Sekarang</a>
         </div>
       </div>
     </div>
@@ -175,7 +171,6 @@
           <h5>Menu</h5>
           <ul class="list-unstyled">
             <li><a href="{{ route('home') }}" class="text-white text-decoration-none">Home</a></li>
-            <li><a href="{{ route('products') }}" class="text-white text-decoration-none">Produk</a></li>
             <li><a href="{{ route('booking') }}" class="text-white text-decoration-none">Booking</a></li>
           </ul>
         </div>
