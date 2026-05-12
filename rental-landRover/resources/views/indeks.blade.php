@@ -1,55 +1,8 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Land Rover Rental - Home</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-</head>
-<body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-    <div class="container">
-      <a class="navbar-brand" href="{{ route('home') }}"><img src="{{ asset('assets/land-rover-logo-png_seeklogo-201638.png') }}" width="50px" style="margin-right: 30px;"> Land Rover Rental</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto align-items-lg-center">
-          <li class="nav-item"><a class="nav-link active" href="{{ route('home') }}">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="{{ route('products') }}">Produk</a></li>
-          <li class="nav-item"><a class="nav-link" href="{{ route('booking') }}">Booking</a></li>
-          <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
-            <span class="nav-link"><i class="bi bi-person-circle"></i> {{ session('username', 'Tamu') }}</span>
-          </li>
-          <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
-            <button id="themeToggleBtn" class="btn btn-outline-light btn-sm" type="button">
-              <i class="bi bi-moon-stars-fill"></i> Dark Mode
-            </button>
-          </li>
-          <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
-            @if(session('username'))
-              <a href="{{ route('logout') }}" class="btn btn-outline-light btn-sm" type="button">
-                <i class="bi bi-box-arrow-right"></i> Logout
-              </a>
-            @else
-              <a href="{{ route('login') }}" class="btn btn-outline-light btn-sm">
-                <i class="bi bi-box-arrow-in-right"></i> Login
-              </a>
-            @endif
-          </li>
-          <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
-            <button id="wishlistNavBtn" class="btn btn-warning btn-sm position-relative" type="button" data-bs-toggle="modal" data-bs-target="#wishlistModal">
-              <i class="bi bi-heart-fill"></i> Wishlist
-              <span id="wishlistBadge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
-            </button>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+@extends('layouts.main')
 
+@section('title', 'Land Rover Rental - Home')
+
+@section('content')
   <section class="hero-section py-5 d-flex align-items-center" style="background-image: url('{{ asset('assets/hero-section.jpg') }}'); background-size: cover; background-position: center; position: relative;">
     <div class="overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); z-index: 1;"></div>
     <div class="container position-relative" style="z-index: 2;">
@@ -164,33 +117,6 @@
     </div>
   </section>
 
-  <footer class="footer bg-dark text-white py-4">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6">
-          <h5><i class="bi bi-truck"></i> Land Rover Rental</h5>
-          <p>Rental mobil khusus Land Rover terpercaya sejak 2005. Melayani petualangan dan bisnis Anda.</p>
-        </div>
-        <div class="col-md-3">
-          <h5>Menu</h5>
-          <ul class="list-unstyled">
-            <li><a href="{{ route('home') }}" class="text-white text-decoration-none">Home</a></li>
-            <li><a href="{{ route('products') }}" class="text-white text-decoration-none">Produk</a></li>
-            <li><a href="{{ route('booking') }}" class="text-white text-decoration-none">Booking</a></li>
-          </ul>
-        </div>
-        <div class="col-md-3">
-          <h5>Ikuti Kami</h5>
-          <a href="#" class="text-white me-2"><i class="bi bi-facebook fs-4"></i></a>
-          <a href="#" class="text-white me-2"><i class="bi bi-instagram fs-4"></i></a>
-          <a href="#" class="text-white me-2"><i class="bi bi-twitter fs-4"></i></a>
-        </div>
-      </div>
-      <hr class="bg-light">
-      <p class="text-center mb-0">&copy; 2025 Land Rover Rental. All rights reserved.</p>
-    </div>
-  </footer>
-
   <div class="modal fade" id="wishlistModal" tabindex="-1" aria-labelledby="wishlistModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable">
       <div class="modal-content">
@@ -205,8 +131,5 @@
       </div>
     </div>
   </div>
+@endsection
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="{{ asset('js/script.js') }}"></script>
-</body>
-</html>

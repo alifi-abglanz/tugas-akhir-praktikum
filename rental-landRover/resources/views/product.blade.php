@@ -1,33 +1,8 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Land Rover Rental - Produk</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-</head>
-<body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-    <div class="container">
-      <a class="navbar-brand" href="{{ route('home') }}"><img src="{{ asset('assets/land-rover-logo-png_seeklogo-201638.png') }}" width="50" style="margin-right: 30px;"> Land Rover Rental</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto align-items-lg-center">
-          <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
-          <li class="nav-item"><a class="nav-link active" href="{{ route('products') }}">Produk</a></li>
-          <li class="nav-item"><a class="nav-link" href="{{ route('booking') }}">Booking</a></li>
-          <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
-            <span class="nav-link"><i class="bi bi-person-circle"></i> {{ session('username', 'Tamu') }}</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+@extends('layouts.main')
 
+@section('title', 'Land Rover Rental - Produk')
+
+@section('content')
   <section class="py-5 text-white" style="background: linear-gradient(135deg, #101820 0%, #2f4f4f 100%);">
     <div class="container">
       <div class="row align-items-center">
@@ -46,12 +21,6 @@
 
   <section class="py-5 bg-light">
     <div class="container">
-      @if (session('success'))
-        <div class="alert alert-success">
-          {{ session('success') }}
-        </div>
-      @endif
-
       <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="mb-0">Produk Tersedia</h2>
         <div class="d-flex align-items-center gap-2">
@@ -94,14 +63,5 @@
       </div>
     </div>
   </section>
+@endsection
 
-  <footer class="footer bg-dark text-white py-4">
-    <div class="container text-center">
-      <p class="mb-1">&copy; 2025 Land Rover Rental. All rights reserved.</p>
-      <a href="{{ route('home') }}" class="text-white text-decoration-none">Kembali ke halaman utama</a>
-    </div>
-  </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>

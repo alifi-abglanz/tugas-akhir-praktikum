@@ -1,33 +1,22 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Land Rover Rental - Tambah Produk</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-</head>
-<body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-    <div class="container">
-      <a class="navbar-brand" href="{{ route('home') }}"><img src="{{ asset('assets/land-rover-logo-png_seeklogo-201638.png') }}" width="50" style="margin-right: 30px;"> Land Rover Rental</a>
-      <div class="ms-auto">
-        <a href="{{ route('products') }}" class="btn btn-outline-light">
-          <i class="bi bi-arrow-left"></i> Kembali ke Produk
-        </a>
-      </div>
-    </div>
-  </nav>
+@extends('layouts.main')
 
+@section('title', 'Land Rover Rental - Tambah Produk')
+
+@section('content')
   <section class="py-5 bg-light min-vh-100">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-8">
           <div class="card shadow-sm border-0">
             <div class="card-header bg-dark text-white py-3">
-              <h1 class="h4 mb-0">Tambah Produk Baru</h1>
+              <div class="d-flex align-items-center justify-content-between">
+                <h1 class="h4 mb-0">Tambah Produk Baru</h1>
+                <a href="{{ route('products') }}" class="btn btn-outline-light btn-sm">
+                  <i class="bi bi-arrow-left"></i> Kembali ke Produk
+                </a>
+              </div>
             </div>
+
             <div class="card-body p-4">
               @if ($errors->any())
                 <div class="alert alert-danger">
@@ -98,7 +87,5 @@
       </div>
     </div>
   </section>
+@endsection
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
